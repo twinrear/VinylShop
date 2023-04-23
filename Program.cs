@@ -1,7 +1,20 @@
 var builder = WebApplication.CreateBuilder(args);
+
+// AddControllersWithViews - allows to register both the controller classes and the corresponding Razor views
+// in the MVC middleware pipeline
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+// static files usage
+app.UseStaticFiles();
+
+if(app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.MapDefaultControllerRoute();
 
 app.Run();
 
