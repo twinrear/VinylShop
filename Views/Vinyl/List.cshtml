@@ -1,0 +1,27 @@
+﻿@model IEnumerable<VinylShop.Models.Vinyl>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <title>Vinyl Shop</title>
+</head>
+
+<body>
+
+
+
+    <div class="image-row">
+        @foreach (var vinyl in Model)
+        {
+            <div>
+            <img src=@vinyl.ImageUrl class="image">
+            <h3>@vinyl.ArtistName - @vinyl.AlbumName</h3>
+            </div>
+        }
+    </div>
+</body>
+</html>
