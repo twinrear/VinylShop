@@ -1,20 +1,36 @@
 ﻿@model IEnumerable<VinylShop.Models.Vinyl>
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Vinyl Shop</title>
+	<title>Vinyl Shop</title>
+	<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
 </head>
-
 <body>
-    @*@foreach (var vinyl in Model)
-    {
-        <div>
-            <img src=@vinyl.ImageUrl>
-            <h3>@vinyl.ArtistName - @vinyl.AlbumName</h3>
-        </div>
-    }*@
+	<!-- Include the header -->
+	@Html.Partial("_Header")
+
+	<main>
+		<h2>Most Popular Vinyls</h2>
+		<ul class="vinyls-list">
+			@foreach (var vinyl in Model)
+			{
+				<li class="vinyl">
+					<a href="#">
+						<img src=@vinyl.ImageUrl alt="image">
+						<h3>@vinyl.ArtistName - @vinyl.AlbumName</h3>
+						<p class="price">@vinyl.Price</p>
+						<p class="description">@vinyl.Description</p>
+					</a>
+				</li>
+			}
+		</ul>
+
+		<a href="#" class="btn-all-vinyls">View All Vinyls</a>
+	</main>
+
+	<footer>
+		<p>&copy; 2023 Vinyl Shop</p>
+	</footer>
 </body>
 </html>

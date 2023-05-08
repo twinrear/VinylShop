@@ -1,24 +1,77 @@
 ﻿@model IEnumerable<VinylShop.Models.Vinyl>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="/css/styles.css">
-
-    <title>Vinyl Shop</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vinyl Shop - Product Listing</title>
+	<link rel="stylesheet" href="/CSS/styles.css">
 </head>
-
 <body>
-    <div class="image-row">
-        @foreach (var vinyl in Model)
-        {
-            <div>
-            <img src=@vinyl.ImageUrl class="image">
-            <h3>@vinyl.ArtistName - @vinyl.AlbumName</h3>
-            </div>
-        }
-    </div>
+	@Html.Partial("_Header")
+	<main>
+		<h2>Shop Vinyls</h2>
+		<div class="sorting">
+			<label for="sort-by">Sort By:</label>
+			<select name="sort-by" id="sort-by">
+				<option value="name-asc">Name (A-Z)</option>
+				<option value="name-desc">Name (Z-A)</option>
+				<option value="price-asc">Price (Low to High)</option>
+				<option value="price-desc">Price (High to Low)</option>
+				<option value="popularity">Popularity</option>
+			</select>
+		</div>
+		<ul class="vinyls-list">
+			@foreach (var vinyl in Model)
+			{
+				<li class="vinyl">
+					<a href="#">
+						<img src=@vinyl.ImageUrl alt="image">
+						<h3>@vinyl.ArtistName - @vinyl.AlbumName</h3>
+						<p class="price">@vinyl.Price</p>
+						<p class="description">@vinyl.Description</p>
+					</a>
+				</li>
+			}
+		</ul>
+	</main>
+	<footer>
+		<p>&copy; 2023 Vinyl Shop. All Rights Reserved.</p>
+	</footer>
+
+	<script>
+		const sortSelect = document.getElementById("sort-by");
+		const vinylList = document.querySelector(".vinyls-list");
+		const vinyls = [...vinylList.children];
+
+		sortSelect.addEventListener("change", function () {
+			const sortBy = this.value;
+
+			switch (sortBy) {
+				case "name-asc":
+					vinyls.sort((a, b) => a.querySelector("h3").textContent.localeCompare(b.querySelector("h3").textContent));
+					break;
+				case "name-desc":
+					vinyls.sort((a, b) => b.querySelector("h3").textContent.localeCompare(a.querySelector("h3").textContent));
+					break;
+				case "price-asc":
+					vinyls.sort((a, b) => parseFloat(a.querySelector(".price").textContent.slice(1)) - parseFloat(b.querySelector(".price").textContent.slice(1)));
+					break;
+				case "price-desc":
+					vinyls.sort((a, b) => parseFloat(b.querySelector(".price").textContent.slice(1)) - parseFloat(a.querySelector(".price").textContent.slice(1)));
+					break;
+				case "popularity":
+					vinyls.sort((a, b) => b.querySelector(".description").textContent.length - a.querySelector(".description").textContent.length);
+					break;
+				default:
+					vinyls.sort((a, b) => a.querySelector("h3").textContent.localeCompare(b.querySelector("h3").textContent));
+					break;
+			}
+
+			vinylList.innerHTML = "";
+			vinyls.forEach(vinyl => vinylList.appendChild(vinyl));
+		});
+	</script>
 </body>
 </html>

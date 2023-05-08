@@ -2,6 +2,7 @@ using VinylShop.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Options;
+using VinylShop.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<VinylShopDbContext>(
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IVinylRepository, VinylRepository>();
+builder.Services.AddTransient<VinylController>();
 
 var app = builder.Build();
 

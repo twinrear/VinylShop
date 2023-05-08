@@ -1,29 +1,53 @@
-﻿.image-row {
-    display: flex; /* Використовуємо flexbox для вирівнювання картинок в рядок */
+﻿/* Reset CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.image-row img {
-    float: left; /* Обтікання текстом з лівого боку для відображення картинок в рядку */
-    margin-right: 50px; /* Встановлюємо відступ між картинками */
+/* Global Styles */
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
 }
 
-.image {
-    width: 250px;
-    height: 250px;
+a {
+    color: #333;
+    text-decoration: none;
 }
+
+    a:hover {
+        color: #f39c12;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header */
 
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-between;
 }
 
 nav li {
@@ -32,12 +56,98 @@ nav li {
 
 nav a {
     color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
-    nav a:hover {
-        color: #ff0;
+form {
+    display: flex;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #f39c12;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    cursor: pointer;
+}
+
+/* Main Content */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.vinyls-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vinyl {
+    margin: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0
+}
+
+.btn-all-vinyls {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .btn-all-vinyls:hover {
+        background-color: #f39c12;
+    }
+
+/* Footer */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.sorting {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+    .sorting label {
+        margin-right: 10px;
+    }
+
+.sorting {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+    .sorting label {
+        margin-right: 10px;
     }
