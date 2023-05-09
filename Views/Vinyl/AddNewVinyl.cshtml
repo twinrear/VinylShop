@@ -1,0 +1,37 @@
+﻿@model IEnumerable<VinylShop.Models.Category>
+
+@Html.Partial("_Header")
+
+<form asp-action="List" asp-controller="Vinyl" method="post">
+    @*<div class="form-group">
+        <label for="albumName">Album Name:</label>
+        <input type="text" class="form-control" id="albumName" name="AlbumName">
+    </div>
+    <div class="form-group">
+        <label for="artistName">Artist Name:</label>
+        <input type="text" class="form-control" id="artistName" name="ArtistName">
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" name="Price">
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="isVinylOfWeek">Is Vinyl of the Week:</label>
+        <input type="checkbox" id="isVinylOfWeek" name="IsVinylOfWeek" value="true">
+    </div>
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <select class="form-control" id="category" name="Category">
+            @foreach (var category in Model)
+            {
+                <option value="@category.CategoryName">@category.CategoryName</option>
+            }
+
+        </select>
+    </div>*@
+    <button type="submit">Add Vinyl</button>
+</form>
