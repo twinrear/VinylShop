@@ -21,18 +21,18 @@ namespace VinylShop.Controllers
             return View(vinylRepository.AllVinyls);
         }
 
-        public IActionResult AddNewVinyl() 
+        public IActionResult AddNewVinyl(string albumName, string artistName, decimal price, string description, bool isVinylOfWeek, string category) 
         {
-   //         var vinyl = new Vinyl();
-			//vinyl.AlbumName = Request.Form["AlbumName"];
-			//vinyl.ArtistName = Request.Form["ArtistName"];
-			//vinyl.Price = decimal.Parse(Request.Form["Price"]);
-			//vinyl.Description = Request.Form["Description"];
-			//vinyl.IsVinylOfTheWeek = Request.Form.ContainsKey("VinylOfTheWeek");
-			//vinyl.CategoryId = int.Parse(Request.Form["CategoryId"]);
+            var vinyl = new Vinyl();
+            vinyl.AlbumName = albumName;
+            vinyl.ArtistName = artistName;
+            vinyl.Price = price;
+            vinyl.Description = description;
+            vinyl.IsVinylOfTheWeek = Request.Form.ContainsKey("VinylOfTheWeek");
+            vinyl.CategoryId = int.Parse(Request.Form["CategoryId"]);
 
-			//context.Vinyls.Add(vinyl);
-   //         context.SaveChanges();
+            context.Vinyls.Add(vinyl);
+            context.SaveChanges();
 
             return View(categoryRepository.AllCategories);
 		}
