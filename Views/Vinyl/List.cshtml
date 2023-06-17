@@ -19,7 +19,6 @@
 				<option value="name-desc">Name (Z-A)</option>
 				<option value="price-asc">Price (Low to High)</option>
 				<option value="price-desc">Price (High to Low)</option>
-				<option value="popularity">Popularity</option>
 			</select>
 		</div>
 		<ul class="vinyls-list">
@@ -60,9 +59,6 @@
 					break;
 				case "price-desc":
 					vinyls.sort((a, b) => parseFloat(b.querySelector(".price").textContent.slice(1)) - parseFloat(a.querySelector(".price").textContent.slice(1)));
-					break;
-				case "popularity":
-					vinyls.sort((a, b) => b.querySelector(".description").textContent.length - a.querySelector(".description").textContent.length);
 					break;
 				default:
 					vinyls.sort((a, b) => a.querySelector("h3").textContent.localeCompare(b.querySelector("h3").textContent));

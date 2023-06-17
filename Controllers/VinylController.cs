@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using VinylShop.Models;
 
 namespace VinylShop.Controllers
@@ -16,31 +17,34 @@ namespace VinylShop.Controllers
             this.context = vinylShopDbContext;
         }   
 
+        public IActionResult Home()
+        {
+			return View(vinylRepository.AllVinyls);
+		}
+
         public IActionResult List()
         {
             return View(vinylRepository.AllVinyls);
         }
 
-        public IActionResult AddNewVinyl(string albumName, string artistName, decimal price, string description, bool isVinylOfWeek, string category) 
+        public IActionResult AddNewVinyl(string albumName, string artistName, decimal price, string description, bool isVinylOfWeek, string category, string ImageUrl) 
         {
-            var vinyl = new Vinyl();
-            vinyl.AlbumName = albumName;
-            vinyl.ArtistName = artistName;
-            vinyl.Price = price;
-            vinyl.Description = description;
-            vinyl.IsVinylOfTheWeek = Request.Form.ContainsKey("VinylOfTheWeek");
-            vinyl.CategoryId = int.Parse(Request.Form["CategoryId"]);
+            if(!albumName.IsNullOrEmpty() && !artistName.IsNullOrEmpty() && !description.IsNullOrEmpty() && !category.IsNullOrEmpty() &&
+                price != 0 && !ImageUrl.IsNullOrEmpty())
+            {
+                var vinyl = new Vinyl();
+                vinyl.AlbumName = albumName;
+                vinyl.ArtistName = artistName;
+                vinyl.Price = price;
+                vinyl.Description = description;
+                vinyl.IsVinylOfTheWeek = isVinylOfWeek;
+                vinyl.CategoryId = context.Categories.Where(x => x.CategoryName == category).Select(x => x.CategoryId).FirstOrDefault();
+                vinyl.ImageUrl = ImageUrl;
 
-            context.Vinyls.Add(vinyl);
-            context.SaveChanges();
-
+                context.Vinyls.Add(vinyl);
+                context.SaveChanges();
+            }
             return View(categoryRepository.AllCategories);
 		}
-
-        [HttpPost]
-        public IActionResult AddVinyl()
-        {
-            return RedirectToAction("List", "Vinyl");
-        }
     }
 }
