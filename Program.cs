@@ -26,8 +26,17 @@ if(app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+app.UseRouting();
 
-app.MapDefaultControllerRoute();
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+			name: "default",
+			pattern: "{controller=Vinyl}/{action=Home}"
+		);
+});
+
+//app.MapDefaultControllerRoute();
 
 app.Run();
 
